@@ -32,7 +32,7 @@ class ApartmentsController extends Controller
         if (count($apartment) == 0) {
             return response()->json(array('status' => 100, 'message' => "Invalid Token Request"));
         }
-        return response()->json(array('status' => 200, 'message' => null, 'data' => $apartment));
+        return response()->json(array('status' => 200, 'data' => $apartment));
 
     }
 
