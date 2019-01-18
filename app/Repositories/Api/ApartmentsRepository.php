@@ -40,6 +40,7 @@ class ApartmentsRepository implements ApartmentsRepositoryInterfaces
         $requestData = $request->all();
         $requestData["move_in_date"] = Carbon::parse($requestData["move_in_date"])->format("Y-m-d");
         $requestData['access_token'] = str_random(16);
+        dd($requestData);
         $apartment = Apartments::create($requestData);
         Mail::to($requestData['contact_email_address'])->send(new ApartmentCreated($apartment));
         return $apartment;
