@@ -40,20 +40,22 @@ class ApartmentsRepository implements ApartmentsRepositoryInterfaces
         $requestData = $request->all();
         $requestData["move_in_date"] = Carbon::parse($requestData["move_in_date"])->format("Y-m-d");
         $requestData['access_token'] = str_random(16);
-        dd($requestData);
+
         $apartment = Apartments::create($requestData);
         Mail::to($requestData['contact_email_address'])->send(new ApartmentCreated($apartment));
         return $apartment;
     }
 
-    public function updateApartment(Request $request, $access_token)
+    public function updateApartment(Request $request)
     {
+        $requestData = $request->all();
+        $access_token = $requestData['access_token'];
         $apartment_info = Apartments::where("access_token", $access_token)->first();
         // Validate if the access_token is correct to match an existing record.
         if (!$apartment_info) {
             return false;
         }
-        $requestData = $request->all();
+
         $apartment_info->update($requestData);
         return true;
 

@@ -53,10 +53,10 @@ class ApartmentsController extends Controller
         }
     }
 
-    public function update(Request $request, $access_token)
+    public function update(Request $request)
     {
         try {
-            $this->apartmentsRepository->updateApartment($request, $access_token);
+            $this->apartmentsRepository->updateApartment($request);
             return response()->json(array('status' => 200, 'message' => "Apartment updated successfully!"));
 
         } catch (\Exception $e) {

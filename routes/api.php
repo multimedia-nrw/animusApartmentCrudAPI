@@ -26,4 +26,4 @@ Route::get('apartment/delete/{access_token}', 'Api\ApartmentsController@destroy'
 Route::post('apartment/store', 'Api\ApartmentsController@store');
 
 // Update Existing Apartment Based on Token
-Route::post('apartment/update/{access_token}', 'Api\ApartmentsController@update');
+Route::post('apartment/update', 'Api\ApartmentsController@update');

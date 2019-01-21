@@ -14,5 +14,5 @@ interface ApartmentsRepositoryInterfaces
 
     public function storeApartment(Request $requestData);
 
-    public function updateApartment(Request $requestData, $access_token);
+    public function updateApartment(Request $requestData);
 }
