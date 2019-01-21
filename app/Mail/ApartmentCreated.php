@@ -34,8 +34,8 @@ class ApartmentCreated extends Mailable
             'apartment_address' => $this->apartment->street . ", " . $this->apartment->postal_code . "," . $this->apartment->town . "," . $this->apartment->country,
             'apartment_property_id' => $this->apartment->property_id,
             'move_in_date' => $this->apartment->move_in_date,
-            'editUrl' => $this->apartment->access_token,
-            'deleteUrl' => $this->apartment->access_token,
+            'editUrl' => 'http://172.104.61.196/apartment/edit;apartment_token='.$this->apartment->access_token,
+            'deleteUrl' => 'http://172.104.61.196/apartment/delete;apartment_token='.$this->apartment->access_token,
         ]);
     }
 }
