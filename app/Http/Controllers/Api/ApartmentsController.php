@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Interfaces\Api\ApartmentsRepositoryInterfaces;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ApartmentsController extends Controller
@@ -18,6 +19,12 @@ class ApartmentsController extends Controller
     public function index()
     {
         $apartments = $this->apartmentsRepository->getAllApartments();
+
+        // Filtering the apartments
+        $apartments = $apartments->filter(function ($item) {
+            $item->move_in_date = Carbon::parse($item->move_in_date)->format("d-m-Y");
+            return $item;
+        });
 
         if (count($apartments) == 0) {
             return response()->json(array('status' => 100, 'message' => "No Records for Apartments Found."));
